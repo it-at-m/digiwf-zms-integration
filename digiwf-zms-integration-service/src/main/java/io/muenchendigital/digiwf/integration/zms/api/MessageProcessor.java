@@ -31,8 +31,8 @@ public class MessageProcessor {
     public Consumer<Message<CreateZmsEntryEvent>> createZmsEntry() {
         return message -> {
             log.info("Processing create zms entry request from eventbus");
-            this.zmsService.createEntry(message.getPayload());
-            this.emitResponse(message.getHeaders(), true);
+            final String id = this.zmsService.createEntry(message.getPayload());
+            this.emitResponse(message.getHeaders(), id);
         };
     }
 
@@ -40,11 +40,11 @@ public class MessageProcessor {
      * Function to emit a reponse using the correlateMessageService of digiwf-spring-cloudstream-utils
      *
      * @param messageHeaders The MessageHeaders of the incoming message you want to correlate your answer to
-     * @param status         true when the e-mail has been sent, false when an error occured
+     * @param zmsId          id of the zms entry
      */
-    public void emitResponse(final MessageHeaders messageHeaders, final boolean status) {
+    public void emitResponse(final MessageHeaders messageHeaders, final String zmsId) {
         final Map<String, Object> correlatePayload = new HashMap<>();
-        correlatePayload.put("status", status);
+        correlatePayload.put("zmsId", zmsId);
         this.correlateMessageService.sendCorrelateMessage(messageHeaders, correlatePayload);
     }
 }

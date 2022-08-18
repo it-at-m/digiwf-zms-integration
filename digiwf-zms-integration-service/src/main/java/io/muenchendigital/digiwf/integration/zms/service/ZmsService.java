@@ -15,8 +15,9 @@ public class ZmsService {
 
     private final JsonSchemaApi jsonSchemaApi;
 
-    public void createEntry(final CreateZmsEntryEvent event) {
+    public String createEntry(final CreateZmsEntryEvent event) {
         log.info("entry created: {}", event);
         log.info("Config: " + this.properties.getConfigprop());
+        return "meineTolleId";
     }
 }

@@ -10,50 +10,50 @@ public class ApiKeyAuth implements Authentication {
     private String apiKey;
     private String apiKeyPrefix;
 
-    public ApiKeyAuth(final String location, final String paramName) {
+    public ApiKeyAuth(String location, String paramName) {
         this.location = location;
         this.paramName = paramName;
     }
 
     public String getLocation() {
-        return this.location;
+        return location;
     }
 
     public String getParamName() {
-        return this.paramName;
+        return paramName;
     }
 
     public String getApiKey() {
-        return this.apiKey;
+        return apiKey;
     }
 
-    public void setApiKey(final String apiKey) {
+    public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
 
     public String getApiKeyPrefix() {
-        return this.apiKeyPrefix;
+        return apiKeyPrefix;
     }
 
-    public void setApiKeyPrefix(final String apiKeyPrefix) {
+    public void setApiKeyPrefix(String apiKeyPrefix) {
         this.apiKeyPrefix = apiKeyPrefix;
     }
 
     @Override
-    public void applyToParams(final MultiValueMap<String, String> queryParams, final HttpHeaders headerParams) {
-        if (this.apiKey == null) {
+    public void applyToParams(MultiValueMap<String, String> queryParams, HttpHeaders headerParams) {
+        if (apiKey == null) {
             return;
         }
-        final String value;
-        if (this.apiKeyPrefix != null) {
-            value = this.apiKeyPrefix + " " + this.apiKey;
+        String value;
+        if (apiKeyPrefix != null) {
+            value = apiKeyPrefix + " " + apiKey;
         } else {
-            value = this.apiKey;
+            value = apiKey;
         }
-        if (this.location.equals("query")) {
-            queryParams.add(this.paramName, value);
-        } else if (this.location.equals("header")) {
-            headerParams.add(this.paramName, value);
-        }
+        if (location.equals("query")) {
+            queryParams.add(paramName, value);
+        } else if (location.equals("header")) {
+            headerParams.add(paramName, value);
+       }
     }
 }

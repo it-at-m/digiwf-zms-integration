@@ -7,17 +7,17 @@ public class OAuth implements Authentication {
     private String accessToken;
 
     public String getAccessToken() {
-        return this.accessToken;
+        return accessToken;
     }
 
-    public void setAccessToken(final String accessToken) {
+    public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
     @Override
-    public void applyToParams(final MultiValueMap<String, String> queryParams, final HttpHeaders headerParams) {
-        if (this.accessToken != null) {
-            headerParams.add(HttpHeaders.AUTHORIZATION, "Bearer " + this.accessToken);
+    public void applyToParams(MultiValueMap<String, String> queryParams, HttpHeaders headerParams) {
+        if (accessToken != null) {
+            headerParams.add(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
         }
     }
 }
