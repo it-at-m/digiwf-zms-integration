@@ -39,6 +39,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./digiwf-cosys-integration-service
+          context: ./digiwf-zms-integration-service
           push: true
           tags: itatm/digiwf-zms-integration-service:latest,itatm/digiwf-zms-integration-service:${{ steps.get-version.outputs.version }}

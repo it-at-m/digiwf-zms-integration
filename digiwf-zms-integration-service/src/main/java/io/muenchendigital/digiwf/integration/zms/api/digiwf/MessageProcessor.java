@@ -1,4 +1,4 @@
-package io.muenchendigital.digiwf.integration.zms.api;
+package io.muenchendigital.digiwf.integration.zms.api.digiwf;
 
 import io.muenchendigital.digiwf.integration.zms.service.CreateZmsEntryEvent;
 import io.muenchendigital.digiwf.integration.zms.service.ZmsService;
